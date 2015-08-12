@@ -16,12 +16,6 @@
   </js-module>
 
   <platform name="android">
-    <!-- 1.9
-    <config-file target="res/xml/plugins.xml" parent="/plugins">
-      <plugin name="Hello" value="com.example.plugin.Hello"/>
-    </config-file>
-    -->
-
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="Hello">
         <param name="android-package" value="com.example.plugin.Hello"/>
@@ -37,8 +31,14 @@
     <source-file src="HWPHello.m"/>
   </platform>
 
-  <platform name="wp7"> <!-- not supported for pluginstall (yet)-->
+  <platform name="wp7">
     <source-file src="src/wp7/Hello.cs"/>
+  </platform>
+  
+  <platform name="windows">
+    <js-module src="src/windows/helloProxy.js" name="HelloProxy">
+      <merges target="" />
+    </js-module>
   </platform>
 
 </plugin>
