@@ -26,15 +26,17 @@
   </platform>
 
   <platform name="ios">
-
-    <config-file target="config.xml" parent="/widget">
+    <info>
+open xcode go into settings change `deployment target` to 7.0 or above and add `[Project Name]/Plugins/com.example.hello/Bridging-Header.h` to Objective-c Bridging Header under the Swift Compiler - Code Generation options
+    </info>
+    <config-file target="config.xml" parent="/*">
       <feature name="Hello">
-        <param name="ios-package" value="HWPHello" />
+        <param name="ios-package" value="HWPHello"/>
       </feature>
     </config-file>
 
-    <header-file src="src/ios/HWPHello.h" target-dir="HelloPlugin"/>
-    <source-file src="src/ios/HWPHello.m" target-dir="HelloPlugin"/>
+    <header-file src="src/ios/Bridging-Header.h" />
+    <source-file src="src/ios/Hello.swift"/>
   </platform>
 
   <platform name="wp7">

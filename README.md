@@ -1,49 +1,36 @@
 # Cordova Hello World Plugin
-
 Simple plugin that returns your string prefixed with hello.
 
 Greeting a user with "Hello, world" is something that could be done in JavaScript. This plugin provides a simple example demonstrating how Cordova plugins work.
 
-## Using
-Clone the plugin
+# Install
+Checkout this repo and switch to the swift branch then install with
 
-    $ git clone https://github.com/don/cordova-plugin-hello.git
-
-Create a new Cordova Project
-
-    $ cordova create hello com.example.helloapp Hello
-    
-Install the plugin
-
-    $ cd hello
-    $ cordova plugin add ../cordova-plugin-hello
-    
-
-Edit `www/js/index.js` and add the following code inside `onDeviceReady`
-
-```js
-    var success = function(message) {
-        alert(message);
-    }
-
-    var failure = function() {
-        alert("Error calling Hello Plugin");
-    }
-
-    hello.greet("World", success, failure);
+```
+$ cordova plugin add <path>
 ```
 
-Install iOS or Android platform
+Afterwards open xcode by
 
-    cordova platform add ios
-    cordova platform add android
-    
-Run the code
+```
+$ open platforms/ios/<Project Name>.xcodeproj
+```
 
-    cordova run 
+go into settings change `deployment target` to 7.0 or above and add `<Project Name>/Plugins/com.example.hello/Bridging-Header.h` to Objective-c Bridging Header under the Swift Compiler - Code Generation options
 
-## More Info
+Finally add the following `LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";`
 
-For more information on setting up Cordova see [the documentation](http://cordova.apache.org/docs/en/4.0.0/guide_cli_index.md.html#The%20Command-Line%20Interface)
+# Test
+Add the following to index.js onDeviceReady:
 
-For more info on plugins see the [Plugin Development Guide](http://cordova.apache.org/docs/en/4.0.0/guide_hybrid_plugins_index.md.html#Plugin%20Development%20Guide)
+```js
+
+var win = function (result) {
+    alert(result);      
+},
+fail = function (error) {
+    alert("ERROR " + error);
+};
+
+hello.greet("World", win, fail);
+```
